@@ -1,0 +1,478 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+{% load static %}
+<html>
+ <head>
+        <title>TRAVEASY</title>
+        {% tailwind_css %}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/dist/styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+<body class="bg-[#f8faff]">
+
+  <nav class="bg-transparent h-20 py-5 border-gray-200 dark:bg-gray-900 border border-b-blue-950 text-lg">
+    <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
+        <a href="#" class="flex items-center">
+            <img src="{%static 'images/traveasylogo.png'%}" class="h-6 mr-3 sm:h-9" alt="logo">
+        </a>
+        <div class="flex items-center lg:order-2">
+            <div class="hidden mt-2 mr-4 sm:inline-block hover:text-[#fd8d14] hover:underline">
+                <span></span>
+            </div>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout'%} "
+                  class="bg-blue-950 hover:bg-[#fd8d14] text-white text-md font-lg rounded-lg text-sm px-3 lg:px-4 py-2 lg:py-2.5 sm:mr-2 lg:mr-0  focus:outline-none  ">Logout</a>
+              {% elif not request.user.is_authenticated %}
+                <a href="{% url 'login'%} " 
+                  class="bg-blue-950 hover:bg-[#fd8d14] text-white text-md font-lg rounded-lg text-sm px-3 lg:px-4 py-2 lg:py-2.5 sm:mr-2 lg:mr-0  focus:outline-none  ">Login</a>
+            {% endif %}
+                <button data-collapse-toggle="mobile-menu-2" type="button"
+                class="inline-flex items-center p-2 ml-1 text-sm text-white rounded-lg lg:hidden bg-[#fd8d14] focus:outline-none  dark:text-gray-400 dark:hover:bg-gray-700"
+                id="toggle">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden items-center justify-between w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
+            <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                <li>
+                    <a href="{% url 'home' %}"
+                        class="block hover:text-[#fd8d14] hover:underline py-2 pl-3 pr-4 bg-blue-950  sm:bg-blue-950 sm:hover:bg-[#fd8d14] lg:hover:bg-transparent text-white sm:text-white lg:text-black rounded lg:bg-transparent  lg:p-0 "
+                        aria-current="page">Home</a>
+                </li>
+
+                <li> 
+                    <a href="{% url 'car_list' %}"
+                        class="block hover:text-[#fd8d14] hover:underline py-2 pl-3 pr-4  border-b hover:bg-gray-50 lg:hover:bg-transparent lg:border-0  lg:p-0  dark:hover:bg-gray-700 border-gray-700">Cars</a>
+                </li>
+                <li>
+                    <a href="{% url 'submit_car' %}"
+                        class="block hover:text-[#fd8d14] hover:underline py-2 pl-3 pr-4  border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0  lg:p-0  hover:bg-transparent ">Rent your Cars</a>
+                
+                  </li>
+                  <li>
+                    <a href="{% url 'aboutus'%}"
+                        class="block hover:text-[#fd8d14] hover:underline py-2 pl-3 pr-4  border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0  lg:p-0  hover:bg-transparent "> About Us</a>
+                
+                  </li>
+
+                <li>
+                    <a href="{% url 'blog' %}"
+                        class="block hover:text-[#fd8d14] hover:underline py-2 pl-3 pr-4 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:p-0 lg:dark:hover:text-white dark:border-gray-700">Blog</a>
+                </li>
+                <li>
+                    <a href="{% url 'Contact' %}"
+                        class="block hover:text-[#fd8d14] hover:underline py-2 pl-3 pr-4 text-black border-b border-gray-100 lg:hover:bg-transparent lg:border-0  lg:p-0 lg:dark:hover:text-white hover:bg-gray-700hover:bg-transparent ">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+ 
+<!--page about us-->
+  <div class="relative">
+    <img src="{% static 'images/about/img 2.jpg' %}" class="rounded-b-3xl shadow-lg w-full h-[500px] brightness-50">
+    <div class="absolute inset-0 flex justify-center items-center font-bold">
+        <p class="text-white text-5xl font-bold mb-52">ABOUT US</p>
+    </div>
+</div>
+
+
+<div class="flex flex-col lg:flex-row justify-evenly gap-10 lg:gap-20 mt-10 lg:mt-36 px-5">
+    <div class="w-full lg:w-1/2">
+        <p class="text-black text-2xl lg:text-4xl font-bold text-justify">THE BEST CAR RENTAL SERVICE IN THE WORLD</p>
+    </div>
+    <div class="w-full lg:w-1/2 mt-5 lg:mt-0 text-justify">
+        <p>Traveasy is your premier destination for hassle-free car rentals, offering a seamless and convenient experience for travelers worldwide. With our wide range of vehicles and commitment to exceptional service, we strive to make every journey memorable and stress-free.</p>
+    </div>
+</div>
+
+<div class="flex flex-col lg:flex-row gap-10 lg:gap-20 mt-10 lg:mt-20 px-5">
+    <div class="flex flex-col lg:flex-row gap-10">
+        <div class="flex flex-col items-center w-full lg:w-64 border-2 h-[300px] border-gray-300 rounded-xl text-gray-300 p-5">
+            <span class="p-3 border-2 border-gray-300 rounded-full bg-gray-800 mb-5">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" class="w-7 h-7 text-yellow-640">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                </svg>
+            </span>
+            <h2 class="gradient-red text-base uppercase tracking-wide text-black font-bold">OUR MISSION</h2>
+            <p class="text-xs text-gray-400 text-justify mt-2">At Traveasy, our mission is to provide travelers with reliable and affordable car rental solutions that exceed expectations. We are dedicated to delivering exceptional service, convenience, and value to our customers, ensuring that every trip is a smooth and enjoyable experience.</p>
+        </div>
+        <div class="flex flex-col items-center w-full lg:w-64 border-2 h-[300px] border-gray-300 rounded-xl text-gray-300 p-5">
+            <span class="p-3 border-2 border-gray-300 rounded-full bg-gray-800 mb-5">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" class="w-7 h-7 text-yellow-640">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                </svg>
+            </span>
+            <h2 class="gradient-red text-base uppercase tracking-wide text-black font-bold">OUR VISION</h2>
+            <p class="text-xs text-gray-400 text-justify mt-2">Our vision at Traveasy is to become the preferred choice for car rentals globally, known for our commitment to customer satisfaction, innovation, and sustainability. We aim to continually enhance our services, expand our reach, and contribute positively to the travel industry while maintaining the highest standards of integrity and professionalism.</p>
+        </div>
+    </div>
+    <div class="w-full lg:w-1/2">
+        <img src="{% static 'images/about/img 5.jpg' %}" class="rounded-3xl w-full lg:w-[800px] h-[600px]">
+    </div>
+</div>
+
+<div class="bg-blue-950 h-auto lg:h-96 mt-20 rounded-3xl px-5 py-10 lg:py-20">
+    <div class="text-center text-white mb-10">
+        <h2 class="text-3xl font-extrabold">Facts Based On Numbers</h2>
+    </div>
+    <div class="relative">
+        <div class="relative max-w-screen-xl mx-auto">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg sm:grid sm:grid-cols-3 gap-5 px-5 py-10">
+                <div class="flex flex-col items-center border-b sm:border-r sm:border-b-0 p-5">
+                    <dt class="text-lg font-medium text-gray-500 dark:text-gray-400">Happy Customers</dt>
+                    <dd class="text-5xl font-extrabold text-indigo-600 dark:text-indigo-100" id="starsCount">0</dd>
+                </div>
+                <div class="flex flex-col items-center border-t sm:border-t-0 sm:border-l sm:border-r p-5">
+                    <dt class="text-lg font-medium text-gray-500 dark:text-gray-400">Total Kilometers</dt>
+                    <dd class="text-5xl font-extrabold text-indigo-600 dark:text-indigo-100" id="downloadsCount">0</dd>
+                </div>
+                <div class="flex flex-col items-center border-t sm:border-t-0 sm:border-l p-5">
+                    <dt class="text-lg font-medium text-gray-500 dark:text-gray-400">Number Of Cars</dt>
+                    <dd class="text-5xl font-extrabold text-indigo-600 dark:text-indigo-100" id="sponsorsCount">0</dd>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-20 mb-10 flex justify-center text-center items-center">
+    <p class="text-black text-4xl font-bold">TRAVEASY SERVICES</p>
+</div>
+
+<div class="flex flex-wrap justify-center gap-5 px-5">
+    <div class="w-full sm:w-[300px]">
+        <a class="flex flex-col group bg-white border shadow-sm rounded-xl overflow-hidden hover:shadow-lg transition dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70" href="#">
+            <div class="relative pt-[50%] sm:pt-[60%] lg:pt-[80%] rounded-t-xl overflow-hidden">
+                <img class="absolute top-0 start-0 object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-t-xl" src="{% static 'images/about/img 6.jpg' %}">
+            </div>
+            <div class="p-4 md:p-5">
+                <h3 class="text-lg font-bold text-gray-800 dark:text-white">BUSINESS RENTALS</h3>
+                <p class="mt-1 text-gray-500 dark:text-neutral-400">Traveasy offers tailored business rental solutions, ensuring efficiency and flexibility for corporate travel needs.</p>
+            </div>
+        </a>
+    </div>
+    <div class="w-full sm:w-[300px]">
+        <a class="flex flex-col group bg-white border shadow-sm rounded-xl overflow-hidden hover:shadow-lg transition dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70" href="#">
+            <div class="relative pt-[50%] sm:pt-[60%] lg:pt-[80%] rounded-t-xl overflow-hidden">
+                <img class="absolute top-0 start-0 object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-t-xl" src="{% static 'images/about/img 7.jpg' %}">
+            </div>
+            <div class="p-4 md:p-5">
+                <h3 class="text-lg font-bold text-gray-800 dark:text-white">LEISURE RENTALS</h3>
+                <p class="mt-1 text-gray-500 dark:text-neutral-400">Experience seamless leisure travel with Traveasy's wide range of comfortable vehicles for a stress-free journey.</p>
+            </div>
+        </a>
+    </div>
+    <div class="w-full sm:w-[300px]">
+        <a class="flex flex-col group bg-white border shadow-sm rounded-xl overflow-hidden hover:shadow-lg transition dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70" href="#">
+            <div class="relative pt-[50%] sm:pt-[60%] lg:pt-[80%] rounded-t-xl overflow-hidden">
+                <img class="absolute top-0 start-0 object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-t-xl" src="{% static 'images/about/img 8.jpg' %}">
+            </div>
+            <div class="p-4 md:p-5">
+                <h3 class="text-lg font-bold text-gray-800 dark:text-white">AIRPORT TRANSFERS</h3>
+                <p class="mt-1 text-gray-500 dark:text-neutral-400"> with Traveasy's punctual and reliable car rental service, ensuring a smooth start and end to your journey.</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="mt-20 mb-10 flex justify-center text-center items-center">
+    <p class="text-black text-4xl font-bold">OUR PARTNERS</p>
+</div>
+
+
+
+<div class="flex flex-wrap justify-center gap-6 p-6 mb-5">
+  <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4">
+    <img src="{% static 'images/about/logo 1.png'%}" alt="Logo 1" class="mx-auto w-32 h-32">
+  </div>
+  <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4">
+    <img src="{% static 'images/about/logo 2.png'%}" alt="Logo 1" class="mx-auto w-32 h-32">
+  </div>
+  <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4">
+    <img src="{% static 'images/about/logo 3.png'%}" alt="Logo 1" class="mx-auto w-32 h-32">
+  </div>
+</div>
+
+
+
+
+
+  <footer class="text-center text-surface/75 dark:bg-neutral-700 dark:text-white/75 lg:text-left bg-blue-950 text-white">
+    <div
+      class="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-white/10 lg:justify-between">
+      <div class="me-12 hidden lg:block hover:text-[#fd8d14] hover:underline">
+        <span>Get connected with us on social networks:</span>
+      </div>
+    
+      <div class="flex justify-center">
+        <a href="{% url 'home'%}" class="me-6 [&>svg]:h-4 [&>svg]:w-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 320 512">
+            <path
+              d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
+          </svg>
+        </a>
+        <a href="{% url 'home'%}" class="me-6 [&>svg]:h-4 [&>svg]:w-4 ">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 512 512">
+           
+            <path
+              d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+          </svg>
+        </a>
+        <a href="{% url 'home'%}" class="me-6 [&>svg]:h-4 [&>svg]:w-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 488 512">
+           
+            <path
+              d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
+          </svg>
+        </a>
+        <a href="{% url 'home'%}" class="me-6 [&>svg]:h-4 [&>svg]:w-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 448 512">
+           
+            <path
+              d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+          </svg>
+        </a>
+        <a href="{% url 'home'%}" class="me-6 [&>svg]:h-4 [&>svg]:w-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 448 512">
+           
+            <path
+              d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
+          </svg>
+        </a>
+        <a href="{% url 'home'%}" class="[&>svg]:h-4 [&>svg]:w-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 496 512">
+           
+            <path
+              d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+    
+    
+    
+    <div class="mx-6 py-10 text-center md:text-left">
+      <div class="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+       
+        <div class="">
+          <h6
+            class="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start">
+            <span class="me-3 [&>svg]:h-4 [&>svg]:w-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor">
+                <path
+                  d="M12.378 1.602a.75.75 0 00-.756 0L3 6.632l9 5.25 9-5.25-8.622-5.03zM21.75 7.93l-9 5.25v9l8.628-5.032a.75.75 0 00.372-.648V7.93zM11.25 22.18v-9l-9-5.25v8.57a.75.75 0 00.372.648l8.628 5.033z" />
+              </svg>
+            </span>
+            TRAVEASY
+          </h6>
+          <p>
+            Travel easy with Traveasy, your trusted companion for seamless car rental experiences. Discover convenience and affordability in every journey with our extensive range of vehicles and 24/7 support.
+          </p>
+        </div>
+      
+        <div>
+          <h6
+            class="mb-4 flex justify-center font-semibold uppercase md:justify-start">
+            About Company
+          </h6>
+          <p class="mb-4">
+            <a href="{% url 'aboutus'%}">About Us</a>
+          </p>
+          <p class="mb-4">
+            <a href="#!">Our Team</a>
+          </p>
+          <p class="mb-4">
+            <a href="{% url 'aboutus'%}">Terms and Condition</a>
+          </p>
+          <p>
+            <a href="{% url 'terms'%}">Privacy Policy</a>
+          </p>
+        </div>
+       
+        <div>
+          <h6
+            class="mb-4 flex justify-center font-semibold uppercase md:justify-start">
+            Quick links
+          </h6>
+          <p class="mb-4">
+            <a href="{% url 'pricing'%}">Pricing</a>
+          </p>
+          <p class="mb-4">
+            <a href="{% url 'blog'%}">Explore Offers</a>
+          </p>
+          <p class="mb-4">
+            <a href="{% url 'car_list'%}">Book Your Rides</a>
+          </p>
+          <p>
+            <a href="{% url 'aboutus'%}">Help</a>
+          </p>
+        </div>
+     
+        <div>
+          <h6 class="mb-4 flex justify-center font-semibold uppercase md:justify-start">Contact</h6>
+          <p class="mb-4 flex items-center justify-center md:justify-start">
+            <span class="me-3 [&>svg]:h-5 [&>svg]:w-5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor">
+                <path
+                  d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
+                <path
+                  d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
+              </svg>
+            </span>
+            traveasy0@gmail.com
+          </p>
+          <p class="mb-4 flex items-center justify-center md:justify-start">
+            <span class="me-3 [&>svg]:h-5 [&>svg]:w-5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z"
+                  clip-rule="evenodd" />
+              </svg>
+            </span>
+            + 92 341 0032029
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="bg-black/5 p-6 text-center">
+      <span>© 2023 Copyright:</span>
+      <a class="font-semibold">TRAVEASY</a>
+    </div>
+    </footer>
+
+
+
+
+
+  <script>
+            const targets = [
+              { element: document.getElementById('starsCount'), count: 4670, suffix: '+' },
+              { element: document.getElementById('downloadsCount'), count: 5865, suffix: '+' },
+              { element: document.getElementById('sponsorsCount'), count: 100, suffix: '+' }
+            ];
+          
+            // Find the maximum count among all targets
+            const maxCount = Math.max(...targets.map(target => target.count));
+          
+            // Function to animate count-up effect
+            function animateCountUp(target, duration) {
+              let currentCount = 0.05;
+              const increment = Math.ceil(target.count / (duration / 1));
+          
+              const interval = setInterval(() => {
+                currentCount += increment;
+                if (currentCount >= target.count) {
+                  clearInterval(interval);
+                  currentCount = target.count;
+                  target.element.textContent = currentCount + target.suffix;
+                } else {
+                  target.element.textContent = currentCount;
+                }
+              }, 10);
+            }
+          
+            targets.forEach(target => {
+              animateCountUp(target, maxCount / 50
+              ); 
+            });
+          </script>
+
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              let toggle = document.getElementById("toggle");
+              let menu = document.getElementById("mobile-menu-2");
+          
+              toggle.addEventListener("click", () => {
+                  menu.classList.toggle("hidden");
+              });
+          
+              document.addEventListener("click", (event) => {
+                  if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+                      menu.classList.add("hidden");
+                  }
+              });
+          });
+          
+          
+          
+          
+          function showSubmenu() {
+              const submenu = document.getElementById('submenu');
+              submenu.style.display = 'block';
+          }
+          
+          function hideSubmenu() {
+              const submenu = document.getElementById('submenu');
+              submenu.style.display = 'none';
+          }
+          
+          function toggleSubmenu() {
+              const submenu = document.getElementById('submenu');
+              submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+          }
+          
+          function checkScreenSize() {
+              const isSmallScreen = window.innerWidth <= 768; // Change the breakpoint as needed
+              const menu = document.getElementById('menu');
+              const submenu = document.getElementById('submenu');
+          
+              if (isSmallScreen) {
+                  menu.addEventListener('click', toggleSubmenu);
+                  submenu.style.display = 'none'; // Hide submenu by default on small screens
+              } else {
+                  menu.addEventListener('mouseenter', showSubmenu);
+                  menu.addEventListener('mouseleave', hideSubmenu);
+                  submenu.style.display = 'none'; // Hide submenu by default on larger screens
+              }
+          }
+          
+          window.addEventListener('load', checkScreenSize);
+          window.addEventListener('resize', checkScreenSize);
+          </script>
+
+
+    
+<body>
+</html>

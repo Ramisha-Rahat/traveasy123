@@ -1,0 +1,47 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html>
+<head>       
+  <title>Checkout</title>
+  {% tailwind_css %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/dist/styles.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+<body class="bg-[#f8faff]">
+
+    
+
+    <div class="container mx-auto mt-5 p-4 flex flex-col items-center">
+        <h1 class="text-3xl font-bold mb-4">Ordered Pending!!!</h1>
+        <p class="text-lg mb-6">Thank you for your booking, We will send you an e-mail after confirming your information!</p>
+        
+        <div class="bg-white p-4 rounded shadow-md w-96 border border-blue-950">
+            <div class="flex"><h2 class="text-2xl font-semibold mb-4">Your Booking Details</h2>
+            <img src="{% static 'images/traveasylogo.png'%}" class="ml-1  h-10"></div>
+            <p><strong>Full Name:</strong> {{ booking.name }}</p>
+            <p><strong>Email:</strong> {{ booking.email }}</p>
+            <p><strong>Phone:</strong> {{ booking.phone }}</p>
+            <p><strong>Address:</strong> {{ booking.address }}</p>
+            <p><strong>Driver's License:</strong> {{ booking.driver_license }}</p>
+            <p><strong>CNIC:</strong> {{ booking.cnic }}</p>
+            <p><strong>Car Name:</strong> {{ booking.car_name }}</p>
+            <p><strong>Car Company:</strong> {{ booking.car_company }}</p>
+            <p><strong>Start Date:</strong> {{ booking.start_date }}</p>
+            <p><strong>Return Date:</strong> {{ booking.return_date }}</p>
+            <p><strong>Total Price:</strong> Rs. {{ total_price }}</p>
+        </div>
+    </div>
+
+    <div class="btn flex items-center justify-center">
+        <a href="{% url 'home' %}">
+        <button class="bg-blue-950 hover:bg-[#fd8d14] w-64 mt-2 text-white font-bold py-2 px-4 rounded shadow-sm">
+            Back to Website</button></a>
+    </div>
+
+  
+
+
+
+</body>
+</html>

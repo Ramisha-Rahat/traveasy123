@@ -1,0 +1,45 @@
+{% extends "registration/index.html" %}
+
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<body class="font-sans flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-md p-4 bg-white rounded-lg shadow-md">
+      <h1 class="text-2xl font-bold text-center mb-4">Login</h1>
+  
+      <form  method="post" class="space-y-4">
+          
+          {% csrf_token %}
+
+        <div class="flex flex-col mb-4">
+          <label for="email" class="text-sm font-medium mb-1">Email</label>
+          <input type="email" id="email" name="email" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="flex flex-col mb-4">
+          <label for="password" class="text-sm font-medium mb-1">Password</label>
+          <input type="password" id="password" name="password" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center ">
+            <input type="checkbox" id="remember" name="remember" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-0 focus:ring-offset-0 focus:ring-white">
+            <label for="remember" class="text-sm ml-2 text-gray-700">Remember Me</label>
+          </div>
+          <div>
+            <a href="{% url 'custom_admin_login'%}">login as admin</a>
+          </div>
+          
+        </div>
+        <div class=" flex justify-center">
+          <input type="submit" name="save" value="Login" class="bg-[#FD8D14] hover:bg-[#0D274E] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        </div>
+        <div class=" flex justify-center items-center">
+
+          <label for="remember" class="text-base ml-2 text-gray-700">Don't have an Account? <a href="{% url 'register'%}" class=" text-[#0D274E] font-bold " >Sign Up</a></label>
+
+        </div>
+      </form>
+    </div>
+    {% endblock content %}

@@ -1,0 +1,37 @@
+{% extends "cars/base.html" %}
+{% load static %}
+{% block content %}
+<div id="card-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center mt-5 mb-5">
+    {% for car in car_type %}
+    <div class="ft-cars rounded-3xl border border-black w-[300px] h-[500px] hover:border-gray-600 hover:scale-105 hover:duration-500" id="card-actions">
+        <div class="rounded-3xl h-[200px] w-[300px]">
+            <img src="{{ car.imageURL }}" class="h-[200px] w-[295px] rounded-3xl bg-white">
+        </div>
+        <h2 class="Category text-md font-bold text-blue-950 text-right">{{ car.category }}</h2>
+        <h2 class="Company text-md font-bold text-blue-950 text-center underline">{{ car.company }}</h2>
+        <div>
+            <h1 class="text-center text-4xl font-bold ml-2 mb-2">{{ car.name }}</h1>
+            <p class="text-center font-semibold text-xl ml-5">{{ car.reviews }} reviews</p><br>
+            <p class="text-center font-semibold text-xl ml-5">{{ car.price }}/day</p>
+            <div class="border-b border-black w-64 ml-5 mb-5 mt-5"></div>
+            <div class="condition flex justify-around">
+                <div class="seating" style="display: flex; align-items: center;">
+                    <img src="{% static 'images/youth_3791146.png' %}" class="h-5 w-5 mr-2"><span>{{ car.description }}</span>
+                </div>
+                <div class="type" style="display: flex; align-items: center;">
+                    <img src="{% static 'images/car_744465.png' %}" class="h-5 w-5 mr-2"><span>{{ car.category }}</span>
+                </div>
+                <div class="engine" style="display: flex; align-items: center;">
+                    <img src="{% static 'images/fuel-station_9417085.png' %}" class="h-5 w-5 mr-2"><span>{{ car.fuel_type }}</span>
+                </div>
+            </div>
+            <div class="flex items-center justify-around w-[300px] mt-3">
+                <a href="{% url 'cart' %}?car_name={{ car.name }}&car_company={{ car.company }}&car_image={{ car.imageURL }}&car_price={{ car.price }}" class="px-4 py-2 bg-blue-950 hover:bg-[#fd8d19] text-gray-50 rounded-xl flex items-center gap-2">
+                    <span>Book Now</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

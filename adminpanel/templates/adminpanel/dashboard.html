@@ -1,0 +1,350 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+{% load static %}
+<html>
+ <head>
+        <title>TRAVEASY</title>
+        {% tailwind_css %}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/dist/styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
+</head>
+<body class=" bg-[#202020]">
+
+    <div class="min-h-screen flex flex-col">
+        <header class="text-center text-white p-4 bg-[#1a1919]">
+            <div class="dashboard flex justify-between">
+                <div class="small-car flex lg:ml-[500px] sm:ml-2">
+                    <img src="{% static 'images/Hero-car.png' %}" class="h-20">
+                    <h1 class="text-2xl font-bold text-center mt-5 ml-2">Traveasy Dashboard</h1>
+                </div>
+                <button id="menu-btn" class="menu-btn sm:block lg:hidden bg-white h-10">
+                    <img src="{% static 'images/menubtn.png' %}" class="w-10 h-8">
+                </button>
+            </div>
+        </header>
+        <div class="flex flex-1">
+            <!-- Sidebar -->
+            <nav id="sidebar" class="bg-[#1a1919] md:w-[250px] w-full p-4 max-h-full overflow-y-auto text-white hidden lg:block">
+                <ul>
+                    <li class="mb-4 h-16 hover:bg-[#5c5b5b] flex text-center items-center justify-center hover:rounded-xl hover:text-xl md:text-2xl sm:text-2xl font-semibold"><a href="#" onclick="loadContent('dashboard')"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li class="mb-4 h-16 hover:bg-[#5c5b5b] flex text-center items-center justify-center hover:rounded-xl hover:text-xl md:text-2xl sm:text-2xl font-semibold"><a href="#" onclick="loadContent('user')"><i class="fas fa-users"></i> Users</a></li>
+                    <li class="mb-4 h-16 hover:bg-[#5c5b5b] flex text-center items-center justify-center hover:rounded-xl hover:text-xl md:text-2xl sm:text-2xl font-semibold"><a href="#" onclick="loadContent('cars')"><i class="fas fa-car"></i> Cars</a></li>
+                    <li class="mb-4 h-16 hover:bg-[#5c5b5b] flex text-center items-center justify-center hover:rounded-xl hover:text-xl md:text-2xl sm:text-2xl font-semibold"><a href="#" onclick="loadContent('booking')"><i class="fas fa-chart-line"></i> Orders Booked</a></li>
+                    <li class="mb-4 h-16 hover:bg-[#5c5b5b] flex text-center items-center justify-center hover:rounded-xl hover:text-xl md:text-2xl sm:text-2xl font-semibold"><a href="#" onclick="loadContent('contact')"><i class="fa-regular fa-envelope"></i> Contact</a></li>
+                    <li class="mb-4 h-16 hover:bg-[#5c5b5b] flex text-center items-center justify-center hover:rounded-xl hover:text-xl md:text-2xl sm:text-2xl font-semibold"><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        <!-- Main Content -->
+        <main class="flex-1 p-6 overflow-y-auto" id="main-content">
+            <!-- Dashboard Content -->
+            <div id="dashboard" class="content-section flex flex-wrap rounded-3xl">
+                <h2 class="text-xl font-bold text-center text-white">Overview</h2>
+                <div class="flex flex-wrap gap-6 mt-6 items-center justify-around">
+                    <div class="bg-[#5c5b5b] p-4 h-40 w-40 text-center font-light rounded-3xl hover:scale-105">
+                        <h1 class="text-white text-lg font-bold">Today's User</h1>
+                        <div class="flex items-center justify-center mt-3">
+                            <img src="{% static 'images/users.png' %}" class="h-14 w-14">
+                            <p class="text-white text-lg font-bold ml-3">2.4k</p>
+                        </div>
+                    </div>
+                    <div class="bg-[#5c5b5b] p-4 h-40 w-40 text-center font-light rounded-3xl hover:scale-105">
+                        <h1 class="text-white text-lg font-bold">New Clients</h1>
+                        <div class="flex items-center justify-center mt-3">
+                            <img src="{% static 'images/group-people-illustration-set_52683-33806.avif' %}" class="h-14 w-14 rounded-3xl">
+                            <p class="text-white text-lg font-bold ml-3">+1.2k</p>
+                        </div>
+                    </div>
+                    <div class="bg-[#5c5b5b] p-4 h-40 w-40 text-center font-light rounded-3xl hover:scale-105">
+                        <h1 class="text-white text-lg font-bold">Sales</h1>
+                        <div class="flex items-center justify-center mt-3">
+                            <img src="{% static 'images/sales.avif' %}" class="h-14 w-14 rounded-3xl">
+                            <p class="text-white text-lg font-bold ml-3">+5.4k</p>
+                        </div>
+                    </div>
+                    <div class="bg-[#5c5b5b] p-4 h-40 w-40 text-center font-light rounded-3xl hover:scale-105">
+                        <h1 class="text-white text-lg font-bold">Today's Rate</h1>
+                        <div class="flex items-center justify-center mt-3">
+                            <img src="{% static 'images/rates.avif' %}" class="h-14 w-14 rounded-3xl">
+                            <p class="text-white text-lg font-bold ml-3">+59k</p>
+                        </div>
+                    </div>
+                </div>
+                <div class=" sm:h-[300px] sm:w-1/2 lg:h-[600px] md:h-[400px] md:w-full mt-5 rounded-3xl flex items-center justify-center">
+                 {% include 'adminpanel/partials/chart-04.html'%}
+                </div>
+                
+                <div class="analytics md:h-[400px] sm:h-[700px] w-full mt-[50px] rounded-3xl flex flex-wrap justify-center gap-12 items-center">
+
+                    <div class="team w-[400px] bg-[#f8faff] rounded-3xl h-[280px]">
+                        <h1 class="text-lg font-semibold text-center text-blue-950">Team Members</h1>
+                         <div class="mem flex mt-4">
+                            <img src="{% static 'images/user_4305686.png'%}" class="h-14 w-14">
+                            <p class="text-lg font-semibold text-center">Ramisha Rahat
+                                <p class="text-md font-semibold text-green-600 mt-4 h-5">online</p>
+                            </p>
+                            <button class="ml-16 hover:font-bold w-16 h-8 text-blue-950 border border-blue-950 mt-2">Contact</button>
+                         </div>
+                         <div class="mem flex mt-4">
+                            <img src="{% static 'images/avatar_11696774.png'%}" class="h-14 w-14">
+                            <p class="text-lg font-semibold text-center mt-2">Arham Khaliq
+                                <p class="text-md font-semibold text-green-600 mt-4 h-5">in meeting</p>
+                            </p>
+                            <button class="ml-10 hover:font-bold w-16 h-8 text-blue-950 border border-blue-950 mt-2">Contact</button>
+                         </div>
+                         <div class="mem flex mt-4">
+                            <img src="{% static 'images/woman_7337561.png'%}" class="h-14 w-14">
+                            <p class="text-lg font-semibold text-center mt-2">Muneeba Faisal
+                                <p class="text-md font-semibold text-green-600 mt-4 h-5">offline</p>
+                            </p>
+                            <button class="ml-14 hover:font-bold w-16 h-8 text-blue-950 border border-blue-950 mt-2">Contact</button>
+                         </div>
+                    </div>
+                    <div class="bars w-[400px] bg-[#f8faff] rounded-3xl">
+
+                        <div class="m-2 lg:col-span-1 shadow-md">
+                            <h2 class="text-xl p-2 font-semibold text-center">OUR SALES</h2>
+                            <div id="pie_chart" class="w-full"></div>
+                        </div>
+                    
+                         
+
+                    </div>
+                    
+                </div>
+
+                  
+
+            </div>
+
+            <!-- Other sections like customers, cars, etc. will be dynamically loaded here -->
+
+            <!--cars-->
+            <div id="cars" class="content-section flex flex-wrap">
+                
+                <div class="add-car h-[1200px] items-center text-center justify-center text-white">
+                    <h1 class="text-3xl font-bold">Add Cars</h1>
+             <form method="post" enctype="multipart/form-data" class="border md:w-[500px] sm:w-96 sm:ml-0 lg:ml-72 bg-[#1a1919]">
+             {% csrf_token %}
+             {{ form.as_p }}
+             <button
+                                    style="box-shadow: inset 0 2px 4px 0 rgb(2 6 23 / 0.3), inset 0 -2px 4px 0 rgb(203 213 225);"
+                                    class="inline-flex cursor-pointer items-center gap-1 rounded border border-slate-300 bg-gradient-to-b from-slate-50 to-slate-200 px-4 py-2 font-semibold hover:opacity-90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-2 active:opacity-100 text-black">Add Car</button>
+                 </form>
+                </div>
+                
+
+            </div>
+            <!--carend-->
+
+
+            <div id="booking" class="content-section flex flex-wrap">
+                <div class="add-car  items-center text-center justify-center text-white">
+                    <h1 class="text-3xl font-bold mb-5">Cars Booked</h1>
+
+                    <div class="booking-list grid gap-5 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 rounded-3xl">
+                        {% for booking in bookings %}
+                        <div class="border border-gray-300 p-3 rounded-lg bg-[#1a1919] shadow-md hover:scale-105 duration-500 text-left">
+                            <strong>Booking ID:</strong> {{ booking.id }}<br>
+                            <strong>Name:</strong> {{ booking.name }}<br>
+                            <strong>Email:</strong> {{ booking.email }}<br>
+                            <strong>Car:</strong> {{ booking.car_name }} ({{ booking.car_company }})<br>
+                            <strong>Start Date:</strong> {{ booking.start_date }}<br>
+                            <strong>Return Date:</strong> {{ booking.return_date }}<br>
+                            <div>
+                                <a href="{% url 'accept_booking' booking.id %}">
+                                    <button
+                                    style="box-shadow: inset 0 2px 4px 0 rgb(2 6 23 / 0.3), inset 0 -2px 4px 0 rgb(203 213 225);"
+                                    class="inline-flex cursor-pointer items-center gap-1 rounded border border-slate-300 bg-gradient-to-b from-slate-50 to-slate-200 px-4 py-2 font-semibold hover:opacity-90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-2 active:opacity-100 text-black">Accept</button>
+                                </a>
+                                <a href="{% url 'reject_booking' booking.id %}">
+                                    <button
+                                    style="box-shadow: inset 0 2px 4px 0 rgb(2 6 23 / 0.3), inset 0 -2px 4px 0 rgb(203 213 225);"
+                                    class="inline-flex cursor-pointer items-center gap-1 rounded border border-slate-300 bg-gradient-to-b from-slate-50 to-slate-200 px-4 py-2 font-semibold hover:opacity-90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-2 active:opacity-100 text-black">
+                                    Reject
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+            </div>
+            </div>
+            
+            <!--booking ordered confirmed-->
+
+            <!--User end-->
+
+                <div id ="user" class=" content-section mx-auto justify-center">
+                    <h1 class="text-3xl font-bold mb-5 text-center text-white">Users Information</h1>
+                    <div class="grid gap-5 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+                    {% for car in cars %}
+                    <div class=" text-white max-w-sm rounded-lg overflow-hidden shadow-lg m-4 border border-gray-600">
+                        <div class="h-64 w-96">
+                            <img class="w-full h-full object-contain" src="{{ car.image.url }}" alt="{{ car.car_name }}">
+                        </div>
+                        <div class="max-w-sm rounded-lg overflow-hidden shadow-lg m-4 border border-gray-600">
+                            <div class="px-6 py-4 gap-2">
+                                <div class="font-bold text-xl mb-2">  {{ car.car_company }} - {{ car.car_name }} </div>
+                                <div class=" flex justify-around">
+                                   <div class=" flex gap-1 w-1/2">
+                                     <p class=" font-semibold mb-2 underline">Category:</p> <p class="text-white/80 text-base mb-2"> {{ car.category }} </p> </div>
+                         <div class=" flex gap-1 w-1/2"><p class=" font-semibold mb-2 underline">Engine:</p> <p class="border-gray-600 text-base mb-2"> {{ car.engine }} </p></div> </div>
+                         <div class=" flex gap-1">
+                                    <p class=" font-semibold mb-2 underline">Name: </p> <p class="text-white/80 text-base mb-2"> {{ car.full_name }} </p> </div>
+                               <div class=" flex gap-1"><p class=" font-semibold mb-2 underline">Email: </p> <p class="text-white text-base mb-2"> {{ car.email }} </p> </div>
+                                <div class=" flex gap-1">
+                                    <p class=" font-semibold mb-2 underline">Phone:</p> <p class="text-white/80 text-base mb-2"> {{ car.phone }}  </p>  </div>
+                                <div class=" flex gap-1">
+                                    <p class=" font-semibold mb-2 underline">Cnic:</p> <p class="text-white/80 text-base mb-2"> {{ car.cnic }} </p> </div>
+                            <div class=" flex gap-1"><p class=" font-semibold mb-2 underline">Address:</p> <p class="text-white text-base mb-2"> {{ car.address }} </p></div>
+                                 <div class=" flex gap-1"><p class=" font-semibold mb-2 underline">Description: </p> <p class="text-white/80 text-base mb-2"> {{ car.car_description }} </p> </div>
+                                </div>
+                          </div>
+                            </div>
+                         {% endfor %} 
+                        </div>
+                      </div>
+            <!--user end-->
+            <!--contact start-->
+            <div id="contact" class="content-section flex flex-wrap">
+                <div class=" items-center text-center justify-center text-white">
+                    <h1 class="text-3xl font-bold mb-5">Messages Received</h1>
+            
+                    <div class="grid gap-5 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                        {% for contact in responses  %}
+                            <div class="border border-gray-300 rounded-lg shadow-md hover:scale-105 duration-500 p-4 text-left">
+                                <strong>Name:</strong> {{ contact.name }}<br>
+                                <strong>Email:</strong> {{ contact.email }}<br>
+                                <strong>Subject:</strong> {{contact.subject}}<br>
+                                <strong>Message:</strong> {{ contact.message }}<br>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+            <!--contact end-->
+        </main>
+    </div>
+</div>
+
+
+
+<script>
+    function loadContent(section) {
+        const contentSections = document.querySelectorAll('.content-section');
+        contentSections.forEach(section => section.style.display = 'none');
+        document.getElementById(section).style.display = 'block';
+    }
+
+    function logout() {
+        // Handle logout logic here
+    }
+
+    // Initially load the dashboard section
+    document.addEventListener('DOMContentLoaded', () => {
+        loadContent('dashboard');
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr(".datepicker", {});
+</script>
+
+<script>
+    var options = {
+        chart: {
+            height: 250,
+            type: "pie",
+            background: "transparent",
+            fontFamily: 'Arial, sans-serif',
+            toolbar: {
+                show: false
+            }
+        },
+        colors: ["#FF1786", "#247BA0", "#70C1B3", "#FFB6C1"],
+        series: [44, 55, 20, 26],
+        labels: ['Profit', 'Commisssion', 'Customers', 'Sales'],
+        legend: {
+            position: 'bottom',
+            markers: {
+                width: 10,
+                height: 10,
+                radius: 10
+            },
+            itemMargin: {
+                horizontal: 15,
+                vertical: 10
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function (val, opts) {
+                return opts.w.globals.labels[opts.seriesIndex] + ": " + val + "%";
+            },
+            dropShadow: {
+                enabled: true,
+                blur: 5,
+                opacity: 0.1
+            }
+        },
+        plotOptions: {
+            pie: {
+                expandOnClick: false,
+                donut: {
+                    size: '65%',
+                    labels: {
+                        show: true,
+                        name: {
+                            show: true,
+                            offsetY: 15,
+                            formatter: function (val, opts) {
+                                return opts.w.globals.labels[opts.seriesIndex]
+                            }
+                        },
+                        value: {
+                            show: true,
+                            offsetY: -15
+                        }
+                    }
+                }
+            }
+        },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                chart: {
+                    height: 300
+                }
+            }
+        }]
+    };
+
+    var chart = new ApexCharts(document.querySelector("#pie_chart"), options);
+
+    chart.render();
+</script>
+<script>
+    function logout() {
+        // Redirect to the home page
+        window.location.href = "{% url 'home' %}";
+    }
+</script>
+<script>
+    document.getElementById('menu-btn').addEventListener('click', function() {
+        var sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('hidden');
+    });
+</script>
+
+
+</body>
+</html>
+
+ 

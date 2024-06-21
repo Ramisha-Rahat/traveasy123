@@ -1,0 +1,24 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dist/styles.css' %}">
+    <title>{% block title %}Your Website{% endblock %}</title>
+    {% tailwind_css %}
+</head>
+
+ {% block content %}
+ 
+ 
+ {% endblock content %}
+    
+
+
+
+</html>
+

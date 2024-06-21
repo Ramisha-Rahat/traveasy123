@@ -1,0 +1,46 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout</title>
+  {% tailwind_css %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/dist/styles.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .container { width: 100%; max-width: 800px; margin: 0 auto; }
+    .header { text-align: center; padding: 20px; }
+    .content { padding: 20px; }
+    .footer { text-align: center; padding: 10px; font-size: 12px; color: #888; }
+  </style>
+</head>
+<body>
+  
+
+  <div class="container">
+    <div class="header">
+      <h1>Booking Receipt</h1>
+    </div>
+    <div class="content">
+      <h2>Booking Details</h2>
+      <p><strong>Full Name:</strong> {{ booking.name }}</p>
+      <p><strong>Email:</strong> {{ booking.email }}</p>
+      <p><strong>Phone:</strong> {{ booking.phone }}</p>
+      <p><strong>Address:</strong> {{ booking.address }}</p>
+      <p><strong>Driver's License:</strong> {{ booking.driver_license }}</p>
+      <p><strong>CNIC:</strong> {{ booking.cnic }}</p>
+      <p><strong>Car Name:</strong> {{ booking.car_name }}</p>
+      <p><strong>Car Company:</strong> {{ booking.car_company }}</p>
+      <p><strong>Start Date:</strong> {{ booking.start_date }}</p>
+      <p><strong>Return Date:</strong> {{ booking.return_date }}</p>
+      <p><strong>Total Price:</strong> Rs.{{ total_price }}</p>
+    </div>
+    <div class="footer">
+      <p>Thank you for booking with us!</p>
+    </div>
+  </div>
+      
+
+</body>
+</html>

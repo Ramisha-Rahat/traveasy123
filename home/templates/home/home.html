@@ -1,0 +1,109 @@
+<!--after extension of base file-->
+{% extends "home/index.html" %}
+{% load static %}
+{% block content %}
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center mt-4 mb-5">
+  {% for Car in products %}
+  <div class="ft-cars rounded-3xl border border-black w-[300px] h-[500px] transition-all duration-500 hover:scale-105">
+  <div class="rounded-3xl h-[200px] w-[300px]">
+  <img src="{{Car.imageURL}}" class="h-[200px] w-[295px] rounded-3xl">
+  </div>
+  <div>
+   <h1 class="text-center text-4xl font-bold ml-2 mb-2">{{Car.name}}</h1>
+   <p1 class=" text-center font-semibold text-xl ml-5">{{Car.reviews}} reviews</p1><br>
+   <p1 class=" text-center font-semibold text-xl ml-5">{{Car.price}}/day</p1>
+   <div class="border-b border-black w-64 ml-5 mb-5 mt-5"></div>
+   <div class="condition flex justify-around">
+       <div class="seating" style="display: flex; align-items: center;">
+       <img src="{% static 'images/youth_3791146.png' %}" class="h-5 w-5 mr-2"><span>{{Car.description}}</span></div>
+       <div class="type"style="display: flex; align-items: center;">
+       <img src="{% static 'images/car_744465.png' %}" class="h-5 w-5 mr-2"><span>{{Car.automatic}}</span></div>
+       <div class="engine" style="display: flex; align-items: center;">
+       <img src="{% static 'images/fuel-station_9417085.png' %}" class="h-5 w-5 mr-2"><span>{{Car.fuel_type}}</span></div>
+        </div>
+      <div class="flex items-center justify-around w-[300px] mt-5">
+        <a href="{% url 'car_list'%}">
+      <button class="px-4 py-2 bg-blue-950 hover:bg-[#fd8d14] text-gray-50 rounded-xl flex items-center gap-2">
+       <span>Book Now</span> </button></a></div>
+   </div>
+</div>
+{% endfor %}
+</div>
+{% endblock content %}
+
+
+<!--
+<div class="card-car rounded-3xl mt-10 border border-black">
+    <div class="car-image bg-white h-[300px] rounded-3xl">
+     <img src="{% static 'images/Hero-car.png' %}">
+    </div>
+    <div class="car-text bg-green h-[300px]">
+      <h1 class="car-name text-center text-2xl font-bold ml-2 mb-2">TOYOTA COROLLA 2017</h1>
+      <p1 class="review text-center font-semibold text-xl ml-5">3.8 reviews</p1><br>
+      <p1 class="price text-center font-semibold text-xl ml-5">6,500/day</p1>
+      <div class="hre border-b w-64 ml-16 mb-5 mt-5"></div>
+      <div class="condition flex justify-around">
+        <div class="seating" style="display: flex; align-items: center;">
+        <img src="{% static 'images/youth_3791146.png' %}" class="h-5 w-5 mr-2"><span>4/5</span>
+        </div>
+        <div class="type"style="display: flex; align-items: center;">
+            <img src="{% static 'images/car_744465.png' %}" class="h-5 w-5 mr-2"><span>AT/MT</span></div>
+        <div class="engine" style="display: flex; align-items: center;">
+            <img src="{% static 'images/fuel-station_9417085.png' %}" class="h-5 w-5 mr-2"><span>Petrol</span></div>
+      </div>
+      <div class="button flex items-center justify-around w-[400px] mt-5">
+        <button class="px-4 py-2 bg-blue-950 hover:bg-[#fd8d19] text-gray-50 rounded-xl flex items-center gap-2">
+        <span>Book Now</span> </button>
+        </div>
+       </div>
+     </div>
+
+     <div class="card-car rounded-3xl mt-10 border border-black">
+        <div class="car-image bg-white h-[300px] rounded-3xl">
+         <img src="{% static 'images/Hero-car.png' %}">
+        </div>
+        <div class="car-text bg-green h-[300px]">
+          <h1 class="car-name text-center text-2xl font-bold ml-2 mb-2">TOYOTA COROLLA 2017</h1>
+          <p1 class="review text-center font-semibold text-xl ml-5">3.8 reviews</p1><br>
+          <p1 class="price text-center font-semibold text-xl ml-5">6,500/day</p1>
+          <div class="hre border-b w-64 ml-16 mb-5 mt-5"></div>
+          <div class="condition flex justify-around">
+            <div class="seating" style="display: flex; align-items: center;">
+            <img src="{% static 'images/youth_3791146.png' %}" class="h-5 w-5 mr-2"><span>4/5</span>
+            </div>
+            <div class="type"style="display: flex; align-items: center;">
+                <img src="{% static 'images/car_744465.png' %}" class="h-5 w-5 mr-2"><span>AT/MT</span></div>
+            <div class="engine" style="display: flex; align-items: center;">
+                <img src="{% static 'images/fuel-station_9417085.png' %}" class="h-5 w-5 mr-2"><span>Petrol</span></div>
+          </div>
+          <div class="button flex items-center justify-around w-[400px] mt-5">
+            <button class="px-4 py-2 bg-blue-950 hover:bg-[#fd8d19] text-gray-50 rounded-xl flex items-center gap-2">
+            <span>Book Now</span> </button>
+            </div>
+           </div>
+         </div>
+
+         <div class="card-car rounded-3xl mt-10 border border-black">
+            <div class="car-image bg-white h-[300px] rounded-3xl">
+             <img src="{% static 'images/Hero-car.png' %}">
+            </div>
+            <div class="car-text bg-green h-[300px]">
+              <h1 class="car-name number3 text-center text-2xl font-bold ml-2 mb-2">TOYOTA COROLLA 2017</h1>
+              <p1 class="review text-center font-semibold text-xl ml-5">3.8 reviews</p1><br>
+              <p1 class="price text-center font-semibold text-xl ml-5">6,500/day</p1>
+              <div class="hre number-3 border-b w-64 ml-16 mb-5 mt-5"></div>
+              <div class="condition flex justify-around">
+                <div class="seating" style="display: flex; align-items: center;">
+                <img src="{% static 'images/youth_3791146.png' %}" class="h-5 w-5 mr-2"><span>4/5</span>
+                </div>
+                <div class="type"style="display: flex; align-items: center;">
+                    <img src="{% static 'images/car_744465.png' %}" class="h-5 w-5 mr-2"><span>AT/MT</span></div>
+                <div class="engine" style="display: flex; align-items: center;">
+                    <img src="{% static 'images/fuel-station_9417085.png' %}" class="h-5 w-5 mr-2"><span>Petrol</span></div>
+              </div>
+              <div class="button flex items-center justify-around w-[400px] mt-5">
+                <button class="px-4 py-2 bg-blue-950 hover:bg-[#fd8d19] text-gray-50 rounded-xl flex items-center gap-2">
+                <span>Book Now</span> </button>
+                </div>
+               </div>
+             </div>-->
